@@ -1,0 +1,1188 @@
+/* =========================================================
+   CBRND REAL COMPASS
+   STYLE.CSS
+   Premium 3D Digital Compass
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-main: #030712;
+    --bg-card: rgba(10, 20, 38, 0.82);
+    --border: rgba(90, 180, 255, 0.22);
+    --cyan: #00d9ff;
+    --blue: #287cff;
+    --green: #19e6a2;
+    --orange: #ff9d35;
+    --red: #ff405f;
+    --text: #ffffff;
+    --muted: #8fa7c5;
+}
+
+html {
+    width: 100%;
+    min-height: 100%;
+    background: var(--bg-main);
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: var(--text);
+
+    background:
+        radial-gradient(
+            circle at 50% 15%,
+            rgba(0, 140, 255, 0.15),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 10% 90%,
+            rgba(0, 255, 210, 0.07),
+            transparent 30%
+        ),
+        linear-gradient(
+            145deg,
+            #02050d,
+            #07101f 50%,
+            #02050c
+        );
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   APP
+   ========================================================= */
+
+.compass-app {
+    width: min(100%, 1100px);
+    min-height: 100vh;
+
+    margin: auto;
+    padding: 24px;
+
+    position: relative;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.top-header {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 18px 22px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(14, 30, 54, 0.95),
+            rgba(5, 13, 27, 0.82)
+        );
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.35),
+        inset 0 1px rgba(255, 255, 255, 0.04);
+
+    backdrop-filter: blur(18px);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.brand-icon {
+    width: 52px;
+    height: 52px;
+
+    display: grid;
+    place-items: center;
+
+    font-size: 27px;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0, 217, 255, 0.2),
+            rgba(40, 124, 255, 0.08)
+        );
+
+    border: 1px solid rgba(0, 217, 255, 0.3);
+
+    box-shadow:
+        0 0 25px rgba(0, 217, 255, 0.08);
+}
+
+.brand h1 {
+    font-size: 18px;
+    letter-spacing: 2px;
+    font-weight: 800;
+}
+
+.brand p {
+    margin-top: 4px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   SENSOR STATUS
+   ========================================================= */
+
+.sensor-status {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 9px 13px;
+
+    border-radius: 30px;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    background: rgba(255, 255, 255, 0.035);
+
+    color: var(--muted);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 0.5px;
+
+    white-space: nowrap;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: var(--orange);
+
+    box-shadow:
+        0 0 10px var(--orange);
+}
+
+
+/* =========================================================
+   HEADING PANEL
+   ========================================================= */
+
+.heading-panel {
+    text-align: center;
+
+    padding: 28px 10px 18px;
+}
+
+.heading-value {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+
+    line-height: 1;
+}
+
+.heading-value span {
+    font-size: clamp(55px, 9vw, 88px);
+
+    font-weight: 800;
+
+    letter-spacing: -4px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff,
+            #72dfff
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+
+    text-shadow:
+        0 0 30px rgba(0, 217, 255, 0.12);
+}
+
+.heading-value small {
+    margin-left: 7px;
+
+    color: var(--cyan);
+
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.direction-name {
+    margin-top: 9px;
+
+    font-size: 25px;
+    font-weight: 800;
+
+    letter-spacing: 5px;
+
+    color: #ffffff;
+}
+
+.direction-subtitle {
+    margin-top: 6px;
+
+    color: var(--cyan);
+
+    font-size: 15px;
+    letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   COMPASS SECTION
+   ========================================================= */
+
+.compass-section {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+
+    padding: 10px 0 30px;
+}
+
+.compass-wrapper {
+    width: min(82vw, 500px);
+    aspect-ratio: 1 / 1;
+
+    position: relative;
+
+    display: grid;
+    place-items: center;
+}
+
+
+/* =========================================================
+   COMPASS OUTER RING
+   ========================================================= */
+
+.compass-ring {
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(15, 34, 58, 0.96) 0%,
+            rgba(5, 15, 29, 0.98) 57%,
+            rgba(2, 7, 15, 1) 70%
+        );
+
+    border:
+        2px solid rgba(0, 217, 255, 0.25);
+
+    box-shadow:
+        0 0 0 8px rgba(0, 217, 255, 0.025),
+        0 0 0 18px rgba(0, 217, 255, 0.018),
+        0 30px 80px rgba(0, 0, 0, 0.7),
+        inset 0 0 50px rgba(0, 150, 255, 0.08);
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   INNER GLOW
+   ========================================================= */
+
+.compass-ring::before {
+    content: "";
+
+    position: absolute;
+    inset: 6%;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255, 255, 255, 0.06);
+
+    box-shadow:
+        inset 0 0 40px rgba(0, 217, 255, 0.08);
+}
+
+.compass-ring::after {
+    content: "";
+
+    position: absolute;
+
+    width: 45%;
+    height: 45%;
+
+    left: 27.5%;
+    top: 27.5%;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0, 217, 255, 0.06),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   ROTATING COMPASS FACE
+   ========================================================= */
+
+.compass-face {
+    position: absolute;
+
+    width: 76%;
+    height: 76%;
+
+    left: 12%;
+    top: 12%;
+
+    border-radius: 50%;
+
+    transition:
+        transform 0.12s linear;
+
+    will-change: transform;
+}
+
+
+/* =========================================================
+   DEGREE NUMBERS
+   ========================================================= */
+
+.degree-mark {
+    position: absolute;
+
+    width: 42px;
+    height: 25px;
+
+    left: calc(50% - 21px);
+    top: 4%;
+
+    text-align: center;
+
+    color: rgba(177, 213, 239, 0.75);
+
+    font-size: 10px;
+    font-weight: 600;
+
+    transform-origin:
+        21px calc(46% of 100%);
+
+    pointer-events: none;
+}
+
+
+/*
+   Individual degree positions
+*/
+
+.mark-0 {
+    transform: rotate(0deg) translateY(0);
+}
+
+.mark-30 {
+    transform: rotate(30deg) translateY(0);
+}
+
+.mark-60 {
+    transform: rotate(60deg) translateY(0);
+}
+
+.mark-90 {
+    transform: rotate(90deg) translateY(0);
+}
+
+.mark-120 {
+    transform: rotate(120deg) translateY(0);
+}
+
+.mark-150 {
+    transform: rotate(150deg) translateY(0);
+}
+
+.mark-180 {
+    transform: rotate(180deg) translateY(0);
+}
+
+.mark-210 {
+    transform: rotate(210deg) translateY(0);
+}
+
+.mark-240 {
+    transform: rotate(240deg) translateY(0);
+}
+
+.mark-270 {
+    transform: rotate(270deg) translateY(0);
+}
+
+.mark-300 {
+    transform: rotate(300deg) translateY(0);
+}
+
+.mark-330 {
+    transform: rotate(330deg) translateY(0);
+}
+
+
+/* =========================================================
+   TICK MARKS
+   ========================================================= */
+
+.tick {
+    position: absolute;
+
+    width: 1px;
+    height: 9px;
+
+    left: calc(50% - 0.5px);
+    top: 0;
+
+    transform-origin:
+        0.5px 100%;
+
+    background: rgba(169, 210, 237, 0.45);
+}
+
+.tick:nth-child(3n) {
+    height: 13px;
+
+    background: rgba(0, 217, 255, 0.65);
+}
+
+
+/* =========================================================
+   DIRECTION LABELS
+   ========================================================= */
+
+.direction-label {
+    position: absolute;
+
+    z-index: 8;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    text-align: center;
+}
+
+.direction-label.north {
+    top: 7%;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    font-size: 30px;
+
+    color: #ff405f;
+
+    text-shadow:
+        0 0 18px rgba(255, 64, 95, 0.5);
+}
+
+.direction-label.south {
+    bottom: 7%;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    font-size: 26px;
+
+    color: #d9e7f3;
+}
+
+.direction-label.east {
+    right: 8%;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-size: 26px;
+
+    color: #d9e7f3;
+}
+
+.direction-label.west {
+    left: 8%;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-size: 26px;
+
+    color: #d9e7f3;
+}
+
+
+/* =========================================================
+   INTERMEDIATE DIRECTIONS
+   ========================================================= */
+
+.direction-label.northeast {
+    right: 17%;
+    top: 19%;
+
+    font-size: 12px;
+
+    color: var(--cyan);
+}
+
+.direction-label.southeast {
+    right: 17%;
+    bottom: 19%;
+
+    font-size: 12px;
+
+    color: var(--cyan);
+}
+
+.direction-label.southwest {
+    left: 17%;
+    bottom: 19%;
+
+    font-size: 12px;
+
+    color: var(--cyan);
+}
+
+.direction-label.northwest {
+    left: 17%;
+    top: 19%;
+
+    font-size: 12px;
+
+    color: var(--cyan);
+}
+
+
+/* =========================================================
+   FIXED POINTER
+   ========================================================= */
+
+.fixed-pointer {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 0;
+    height: 0;
+
+    z-index: 20;
+
+    transform:
+        translate(-50%, -50%);
+}
+
+.pointer-arrow {
+    position: absolute;
+
+    width: 0;
+    height: 0;
+
+    left: -13px;
+    top: -145px;
+
+    border-left: 13px solid transparent;
+    border-right: 13px solid transparent;
+
+    border-bottom: 42px solid var(--red);
+
+    filter:
+        drop-shadow(
+            0 0 10px rgba(255, 64, 95, 0.75)
+        );
+}
+
+.pointer-arrow::after {
+    content: "";
+
+    position: absolute;
+
+    left: -7px;
+    top: 38px;
+
+    width: 14px;
+    height: 55px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.8),
+            rgba(255, 255, 255, 0)
+        );
+
+    clip-path:
+        polygon(
+            50% 100%,
+            0 0,
+            100% 0
+        );
+
+    opacity: 0.35;
+}
+
+
+/* =========================================================
+   CENTER
+   ========================================================= */
+
+.compass-center {
+    position: absolute;
+
+    width: 68px;
+    height: 68px;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    z-index: 30;
+
+    border-radius: 50%;
+
+    display: grid;
+    place-items: center;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #38eaff,
+            #0876a8 42%,
+            #03131e 72%
+        );
+
+    border:
+        3px solid rgba(255, 255, 255, 0.2);
+
+    box-shadow:
+        0 0 25px rgba(0, 217, 255, 0.3),
+        inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.center-dot {
+    width: 15px;
+    height: 15px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 14px #ffffff,
+        0 0 30px var(--cyan);
+}
+
+
+/* =========================================================
+   INFO GRID
+   ========================================================= */
+
+.info-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+
+    margin: 0 auto 22px;
+
+    max-width: 800px;
+}
+
+.info-card {
+    min-height: 80px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 14px;
+
+    border-radius: 16px;
+
+    border: 1px solid var(--border);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(14, 29, 50, 0.82),
+            rgba(5, 12, 24, 0.75)
+        );
+
+    box-shadow:
+        inset 0 1px rgba(255, 255, 255, 0.035);
+}
+
+.info-icon {
+    width: 40px;
+    height: 40px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 12px;
+
+    background:
+        rgba(0, 217, 255, 0.08);
+
+    font-size: 19px;
+}
+
+.info-label {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 4px;
+}
+
+.info-card strong {
+    font-size: 16px;
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   CONTROLS
+   ========================================================= */
+
+.controls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    margin-bottom: 24px;
+}
+
+.control-button {
+    min-height: 48px;
+
+    padding: 0 20px;
+
+    border-radius: 13px;
+
+    border: 1px solid rgba(0, 217, 255, 0.2);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(19, 38, 65, 0.95),
+            rgba(8, 18, 34, 0.95)
+        );
+
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 0.7px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.control-button:hover {
+    transform: translateY(-2px);
+
+    border-color:
+        rgba(0, 217, 255, 0.55);
+
+    box-shadow:
+        0 10px 30px rgba(0, 217, 255, 0.12);
+}
+
+.control-button:active {
+    transform: translateY(1px);
+}
+
+.control-button.primary {
+    background:
+        linear-gradient(
+            135deg,
+            #008fd4,
+            #1457d9
+        );
+
+    border-color:
+        rgba(115, 230, 255, 0.65);
+
+    box-shadow:
+        0 10px 30px rgba(0, 130, 255, 0.22);
+}
+
+
+/* =========================================================
+   CALIBRATION / PERMISSION PANELS
+   ========================================================= */
+
+.calibration-panel,
+.permission-panel {
+    max-width: 600px;
+
+    margin: 0 auto 25px;
+
+    padding: 28px;
+
+    text-align: center;
+
+    border-radius: 20px;
+
+    border:
+        1px solid rgba(0, 217, 255, 0.25);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(12, 29, 50, 0.97),
+            rgba(4, 12, 25, 0.97)
+        );
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.4);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.calibration-icon,
+.permission-icon {
+    font-size: 42px;
+
+    margin-bottom: 12px;
+}
+
+.calibration-panel h2,
+.permission-panel h2 {
+    margin-bottom: 10px;
+
+    font-size: 21px;
+}
+
+.calibration-panel p,
+.permission-panel p {
+    color: var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+.calibration-en {
+    margin-top: 5px;
+}
+
+.calibration-progress {
+    width: 100%;
+    height: 7px;
+
+    margin: 22px 0;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.calibration-progress div {
+    width: 0%;
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            var(--blue)
+        );
+
+    box-shadow:
+        0 0 15px var(--cyan);
+
+    transition:
+        width 0.2s linear;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.app-footer {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 20px;
+
+    padding: 18px 0 5px;
+
+    color: #5e7898;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+.app-footer strong {
+    color: var(--green);
+}
+
+
+/* =========================================================
+   SENSOR ACTIVE STATE
+   ========================================================= */
+
+.sensor-active .status-dot {
+    background: var(--green);
+
+    box-shadow:
+        0 0 12px var(--green);
+
+    animation:
+        sensorPulse 1.5s infinite;
+}
+
+.sensor-active #sensorStatusText {
+    color: var(--green);
+}
+
+@keyframes sensorPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .compass-app {
+        padding: 12px;
+    }
+
+    .top-header {
+        padding: 14px;
+
+        border-radius: 17px;
+    }
+
+    .brand-icon {
+        width: 44px;
+        height: 44px;
+
+        font-size: 23px;
+    }
+
+    .brand h1 {
+        font-size: 14px;
+
+        letter-spacing: 1.5px;
+    }
+
+    .brand p {
+        font-size: 8px;
+    }
+
+    .sensor-status {
+        padding: 7px 9px;
+
+        font-size: 9px;
+    }
+
+    .heading-panel {
+        padding-top: 22px;
+    }
+
+    .direction-name {
+        font-size: 21px;
+        letter-spacing: 4px;
+    }
+
+    .compass-wrapper {
+        width: min(92vw, 440px);
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .info-card {
+        min-height: 68px;
+    }
+
+    .controls {
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        padding: 0 10px;
+    }
+
+    .control-button {
+        width: 100%;
+    }
+
+    .app-footer {
+        flex-direction: column;
+
+        gap: 7px;
+
+        text-align: center;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    .brand p {
+        display: none;
+    }
+
+    .sensor-status {
+        font-size: 0;
+    }
+
+    .sensor-status .status-dot {
+        width: 9px;
+        height: 9px;
+    }
+
+    .heading-value span {
+        font-size: 60px;
+    }
+
+    .direction-label.north {
+        font-size: 25px;
+    }
+
+    .direction-label.south,
+    .direction-label.east,
+    .direction-label.west {
+        font-size: 22px;
+    }
+
+    .compass-center {
+        width: 56px;
+        height: 56px;
+    }
+}
+
+
+/* =========================================================
+   LANDSCAPE MOBILE
+   ========================================================= */
+
+@media (
+    max-height: 600px
+) and (
+    orientation: landscape
+) {
+
+    .compass-app {
+        padding: 10px 20px;
+    }
+
+    .heading-panel {
+        padding: 10px;
+    }
+
+    .heading-value span {
+        font-size: 48px;
+    }
+
+    .compass-wrapper {
+        width: min(65vh, 420px);
+    }
+
+    .compass-section {
+        padding-bottom: 12px;
+    }
+
+    .info-grid {
+        margin-bottom: 12px;
+    }
+}
