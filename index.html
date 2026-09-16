@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <meta name="theme-color" content="#050914">
+
+    <title>CBRND Real Compass</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         MAIN APP
+    ====================================================== -->
+
+    <main class="compass-app">
+
+        <!-- TOP HEADER -->
+        <header class="top-header">
+
+            <div class="brand">
+                <div class="brand-icon">🧭</div>
+
+                <div>
+                    <h1>CBRND COMPASS</h1>
+                    <p>REAL DIGITAL DIRECTION</p>
+                </div>
+            </div>
+
+            <div class="sensor-status" id="sensorStatus">
+                <span class="status-dot"></span>
+                <span id="sensorStatusText">Waiting for Sensor</span>
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             HEADING INFORMATION
+        ================================================== -->
+
+        <section class="heading-panel">
+
+            <div class="heading-value">
+                <span id="heading">0</span>
+                <small>°</small>
+            </div>
+
+            <div class="direction-name" id="directionName">
+                NORTH
+            </div>
+
+            <div class="direction-subtitle" id="directionSubtitle">
+                उत्तर
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             COMPASS
+        ================================================== -->
+
+        <section class="compass-section">
+
+            <div class="compass-wrapper">
+
+                <!-- OUTER RING -->
+                <div class="compass-ring">
+
+                    <!-- Degree markings -->
+                    <div class="degree-mark mark-0">0</div>
+                    <div class="degree-mark mark-30">30</div>
+                    <div class="degree-mark mark-60">60</div>
+                    <div class="degree-mark mark-90">90</div>
+                    <div class="degree-mark mark-120">120</div>
+                    <div class="degree-mark mark-150">150</div>
+                    <div class="degree-mark mark-180">180</div>
+                    <div class="degree-mark mark-210">210</div>
+                    <div class="degree-mark mark-240">240</div>
+                    <div class="degree-mark mark-270">270</div>
+                    <div class="degree-mark mark-300">300</div>
+                    <div class="degree-mark mark-330">330</div>
+
+                    <!-- Main direction labels -->
+                    <div class="direction-label north">N</div>
+                    <div class="direction-label east">E</div>
+                    <div class="direction-label south">S</div>
+                    <div class="direction-label west">W</div>
+
+                    <!-- Intermediate labels -->
+                    <div class="direction-label northeast">NE</div>
+                    <div class="direction-label southeast">SE</div>
+                    <div class="direction-label southwest">SW</div>
+                    <div class="direction-label northwest">NW</div>
+
+                    <!-- Rotating compass face -->
+                    <div
+                        class="compass-face"
+                        id="compassFace"
+                    >
+
+                        <div class="tick tick-0"></div>
+                        <div class="tick tick-10"></div>
+                        <div class="tick tick-20"></div>
+                        <div class="tick tick-30"></div>
+                        <div class="tick tick-40"></div>
+                        <div class="tick tick-50"></div>
+                        <div class="tick tick-60"></div>
+                        <div class="tick tick-70"></div>
+                        <div class="tick tick-80"></div>
+                        <div class="tick tick-90"></div>
+                        <div class="tick tick-100"></div>
+                        <div class="tick tick-110"></div>
+                        <div class="tick tick-120"></div>
+                        <div class="tick tick-130"></div>
+                        <div class="tick tick-140"></div>
+                        <div class="tick tick-150"></div>
+                        <div class="tick tick-160"></div>
+                        <div class="tick tick-170"></div>
+                        <div class="tick tick-180"></div>
+                        <div class="tick tick-190"></div>
+                        <div class="tick tick-200"></div>
+                        <div class="tick tick-210"></div>
+                        <div class="tick tick-220"></div>
+                        <div class="tick tick-230"></div>
+                        <div class="tick tick-240"></div>
+                        <div class="tick tick-250"></div>
+                        <div class="tick tick-260"></div>
+                        <div class="tick tick-270"></div>
+                        <div class="tick tick-280"></div>
+                        <div class="tick tick-290"></div>
+                        <div class="tick tick-300"></div>
+                        <div class="tick tick-310"></div>
+                        <div class="tick tick-320"></div>
+                        <div class="tick tick-330"></div>
+                        <div class="tick tick-340"></div>
+                        <div class="tick tick-350"></div>
+
+                    </div>
+
+                    <!-- Fixed pointer -->
+                    <div class="fixed-pointer">
+                        <div class="pointer-arrow"></div>
+                    </div>
+
+                    <!-- Center -->
+                    <div class="compass-center">
+                        <div class="center-dot"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             QUICK INFORMATION
+        ================================================== -->
+
+        <section class="info-grid">
+
+            <div class="info-card">
+
+                <span class="info-icon">🧭</span>
+
+                <div>
+                    <span class="info-label">HEADING</span>
+                    <strong>
+                        <span id="headingSmall">0</span>°
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <span class="info-icon">📐</span>
+
+                <div>
+                    <span class="info-label">DIRECTION</span>
+                    <strong id="directionSmall">
+                        NORTH
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <span class="info-icon">📱</span>
+
+                <div>
+                    <span class="info-label">SENSOR</span>
+                    <strong id="sensorType">
+                        DEVICE
+                    </strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             CONTROL BUTTONS
+        ================================================== -->
+
+        <section class="controls">
+
+            <button
+                class="control-button primary"
+                id="startCompass"
+                type="button"
+            >
+                🧭 START COMPASS
+            </button>
+
+            <button
+                class="control-button"
+                id="calibrateCompass"
+                type="button"
+            >
+                🔄 CALIBRATE
+            </button>
+
+            <button
+                class="control-button"
+                id="voiceButton"
+                type="button"
+            >
+                🔊 SPEAK DIRECTION
+            </button>
+
+        </section>
+
+
+        <!-- =================================================
+             CALIBRATION MESSAGE
+        ================================================== -->
+
+        <section
+            class="calibration-panel hidden"
+            id="calibrationPanel"
+        >
+
+            <div class="calibration-icon">
+                🔄
+            </div>
+
+            <h2>Compass Calibration</h2>
+
+            <p>
+                धीरे-धीरे अपने फोन को हवा में
+                <strong>8 के आकार</strong> में घुमाएं।
+            </p>
+
+            <p class="calibration-en">
+                Move your phone slowly in a
+                <strong>figure-eight (8)</strong> motion.
+            </p>
+
+            <div class="calibration-progress">
+                <div id="calibrationProgress"></div>
+            </div>
+
+            <button
+                class="control-button"
+                id="closeCalibration"
+                type="button"
+            >
+                DONE
+            </button>
+
+        </section>
+
+
+        <!-- =================================================
+             SENSOR WARNING
+        ================================================== -->
+
+        <section
+            class="permission-panel hidden"
+            id="permissionPanel"
+        >
+
+            <div class="permission-icon">
+                📡
+            </div>
+
+            <h2>Sensor Permission Required</h2>
+
+            <p>
+                Compass sensor access is required to detect
+                the real direction.
+            </p>
+
+            <p>
+                Please allow motion/orientation permission
+                when your browser asks.
+            </p>
+
+            <button
+                class="control-button primary"
+                id="permissionButton"
+                type="button"
+            >
+                ALLOW SENSOR
+            </button>
+
+        </section>
+
+
+        <!-- =================================================
+             FOOTER
+        ================================================== -->
+
+        <footer class="app-footer">
+
+            <div>
+                CBRND Real Compass
+            </div>
+
+            <div>
+                API KEY: <strong>NOT REQUIRED</strong>
+            </div>
+
+        </footer>
+
+    </main>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="script.js"></script>
+
+</body>
+</html>
