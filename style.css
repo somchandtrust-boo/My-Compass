@@ -1,7 +1,7 @@
 /* =========================================================
    CBRND REAL COMPASS
-   STYLE.CSS
-   Premium 3D Digital Compass
+   ADVANCED PREMIUM STYLE.CSS
+   3D GLASS + NEON + HUD COMPASS
    ========================================================= */
 
 * {
@@ -11,22 +11,38 @@
 }
 
 :root {
-    --bg-main: #030712;
-    --bg-card: rgba(10, 20, 38, 0.82);
-    --border: rgba(90, 180, 255, 0.22);
-    --cyan: #00d9ff;
+    --bg-1: #02030a;
+    --bg-2: #071226;
+    --bg-3: #10102b;
+
+    --cyan: #00eaff;
     --blue: #287cff;
-    --green: #19e6a2;
-    --orange: #ff9d35;
-    --red: #ff405f;
-    --text: #ffffff;
-    --muted: #8fa7c5;
+    --purple: #8a5cff;
+    --pink: #ff3cac;
+    --green: #20f0a0;
+    --orange: #ff9d32;
+    --red: #ff365b;
+
+    --white: #ffffff;
+    --text: #eaf7ff;
+    --muted: #86a0bd;
+
+    --glass: rgba(10, 22, 43, 0.68);
+    --glass-light: rgba(255, 255, 255, 0.055);
+
+    --border: rgba(0, 234, 255, 0.22);
 }
+
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
 
 html {
     width: 100%;
     min-height: 100%;
-    background: var(--bg-main);
+    background: var(--bg-1);
+    scroll-behavior: smooth;
 }
 
 body {
@@ -34,31 +50,131 @@ body {
     min-height: 100vh;
 
     font-family:
+        Inter,
         Arial,
         Helvetica,
         sans-serif;
 
     color: var(--text);
 
+    overflow-x: hidden;
+
     background:
         radial-gradient(
-            circle at 50% 15%,
-            rgba(0, 140, 255, 0.15),
-            transparent 35%
+            circle at 50% -10%,
+            rgba(0, 234, 255, 0.18),
+            transparent 32%
         ),
         radial-gradient(
-            circle at 10% 90%,
-            rgba(0, 255, 210, 0.07),
+            circle at 90% 25%,
+            rgba(138, 92, 255, 0.13),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 5% 85%,
+            rgba(255, 60, 172, 0.08),
             transparent 30%
         ),
         linear-gradient(
             145deg,
-            #02050d,
-            #07101f 50%,
-            #02050c
+            var(--bg-1),
+            var(--bg-2) 48%,
+            #040714
         );
 
-    overflow-x: hidden;
+    position: relative;
+}
+
+
+/* =========================================================
+   BACKGROUND GRID
+   ========================================================= */
+
+body::before {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: 0.22;
+
+    background-image:
+        linear-gradient(
+            rgba(0, 234, 255, 0.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0, 234, 255, 0.035) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        45px 45px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent
+        );
+
+    z-index: 0;
+}
+
+
+/* =========================================================
+   AMBIENT LIGHTS
+   ========================================================= */
+
+body::after {
+    content: "";
+
+    position: fixed;
+
+    width: 420px;
+    height: 420px;
+
+    left: 50%;
+    top: 45%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0, 234, 255, 0.055),
+            transparent 68%
+        );
+
+    pointer-events: none;
+
+    animation:
+        ambientPulse 5s ease-in-out infinite;
+
+    z-index: 0;
+}
+
+@keyframes ambientPulse {
+
+    0%,
+    100% {
+        opacity: 0.55;
+        transform:
+            translate(-50%, -50%)
+            scale(0.95);
+    }
+
+    50% {
+        opacity: 1;
+        transform:
+            translate(-50%, -50%)
+            scale(1.08);
+    }
 }
 
 
@@ -67,92 +183,179 @@ body {
    ========================================================= */
 
 .compass-app {
-    width: min(100%, 1100px);
+    width: min(1180px, 100%);
+
     min-height: 100vh;
 
     margin: auto;
-    padding: 24px;
+
+    padding:
+        24px
+        24px
+        35px;
 
     position: relative;
+
+    z-index: 1;
 }
 
 
 /* =========================================================
-   HEADER
+   TOP HEADER
    ========================================================= */
 
 .top-header {
     width: 100%;
 
+    min-height: 76px;
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
     gap: 20px;
 
-    padding: 18px 22px;
+    padding: 15px 18px;
 
-    border: 1px solid var(--border);
+    border-radius: 22px;
 
-    border-radius: 20px;
+    border:
+        1px solid rgba(0, 234, 255, 0.18);
 
     background:
         linear-gradient(
             135deg,
-            rgba(14, 30, 54, 0.95),
-            rgba(5, 13, 27, 0.82)
+            rgba(12, 31, 59, 0.82),
+            rgba(7, 12, 29, 0.72)
         );
 
-    box-shadow:
-        0 20px 60px rgba(0, 0, 0, 0.35),
-        inset 0 1px rgba(255, 255, 255, 0.04);
+    backdrop-filter:
+        blur(22px);
 
-    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter:
+        blur(22px);
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.45),
+        inset 0 1px rgba(255, 255, 255, 0.07),
+        inset 0 -1px rgba(0, 0, 0, 0.35);
+
+    position: relative;
+
+    overflow: hidden;
 }
+
+.top-header::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    top: 0;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--cyan),
+            var(--purple),
+            transparent
+        );
+
+    opacity: 0.8;
+}
+
+
+/* =========================================================
+   BRAND
+   ========================================================= */
 
 .brand {
     display: flex;
+
     align-items: center;
+
     gap: 14px;
 }
 
 .brand-icon {
-    width: 52px;
-    height: 52px;
+    width: 53px;
+    height: 53px;
 
     display: grid;
+
     place-items: center;
 
-    font-size: 27px;
+    border-radius: 16px;
 
-    border-radius: 15px;
+    font-size: 28px;
 
     background:
         linear-gradient(
             145deg,
-            rgba(0, 217, 255, 0.2),
-            rgba(40, 124, 255, 0.08)
+            rgba(0, 234, 255, 0.18),
+            rgba(138, 92, 255, 0.15)
         );
 
-    border: 1px solid rgba(0, 217, 255, 0.3);
+    border:
+        1px solid rgba(0, 234, 255, 0.35);
 
     box-shadow:
-        0 0 25px rgba(0, 217, 255, 0.08);
+        0 0 25px rgba(0, 234, 255, 0.12),
+        inset 0 0 20px rgba(255, 255, 255, 0.04);
+
+    animation:
+        iconFloat 4s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
 }
 
 .brand h1 {
-    font-size: 18px;
-    letter-spacing: 2px;
-    font-weight: 800;
+    font-size: 19px;
+
+    font-weight: 900;
+
+    letter-spacing: 2.5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #8beeff,
+            #bda4ff
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
 }
 
 .brand p {
-    margin-top: 4px;
+    margin-top: 5px;
 
     color: var(--muted);
 
-    font-size: 10px;
-    letter-spacing: 2px;
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 2.5px;
 }
 
 
@@ -162,37 +365,87 @@ body {
 
 .sensor-status {
     display: flex;
+
     align-items: center;
+
     gap: 9px;
 
-    padding: 9px 13px;
+    padding:
+        10px
+        14px;
 
     border-radius: 30px;
 
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
 
-    background: rgba(255, 255, 255, 0.035);
+    background:
+        rgba(255, 255, 255, 0.035);
 
-    color: var(--muted);
+    color: #91abc6;
 
-    font-size: 11px;
-    font-weight: 700;
+    font-size: 10px;
 
-    letter-spacing: 0.5px;
+    font-weight: 800;
+
+    letter-spacing: 0.8px;
 
     white-space: nowrap;
+
+    box-shadow:
+        inset 0 1px rgba(255, 255, 255, 0.04);
 }
 
 .status-dot {
-    width: 8px;
-    height: 8px;
+    width: 9px;
+    height: 9px;
 
     border-radius: 50%;
 
-    background: var(--orange);
+    background:
+        var(--orange);
 
     box-shadow:
-        0 0 10px var(--orange);
+        0 0 12px var(--orange);
+
+    transition:
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* =========================================================
+   ACTIVE SENSOR
+   ========================================================= */
+
+.sensor-active .status-dot {
+    background:
+        var(--green);
+
+    box-shadow:
+        0 0 8px var(--green),
+        0 0 20px rgba(32, 240, 160, 0.7);
+
+    animation:
+        statusPulse 1.4s infinite;
+}
+
+.sensor-active #sensorStatusText {
+    color: var(--green);
+}
+
+@keyframes statusPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(0.65);
+        opacity: 0.55;
+    }
 }
 
 
@@ -203,29 +456,63 @@ body {
 .heading-panel {
     text-align: center;
 
-    padding: 28px 10px 18px;
+    padding:
+        27px
+        10px
+        15px;
+
+    position: relative;
+}
+
+.heading-panel::after {
+    content: "";
+
+    width: 170px;
+    height: 1px;
+
+    position: absolute;
+
+    bottom: 0;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--cyan),
+            var(--purple),
+            transparent
+        );
+
+    opacity: 0.45;
 }
 
 .heading-value {
     display: flex;
+
     justify-content: center;
+
     align-items: baseline;
 
     line-height: 1;
 }
 
 .heading-value span {
-    font-size: clamp(55px, 9vw, 88px);
+    font-size:
+        clamp(62px, 10vw, 100px);
 
-    font-weight: 800;
+    font-weight: 900;
 
-    letter-spacing: -4px;
+    letter-spacing: -5px;
 
     background:
         linear-gradient(
             180deg,
-            #ffffff,
-            #72dfff
+            #ffffff 0%,
+            #9cefff 40%,
+            #2ddcff 100%
         );
 
     -webkit-background-clip: text;
@@ -233,8 +520,11 @@ body {
 
     color: transparent;
 
-    text-shadow:
-        0 0 30px rgba(0, 217, 255, 0.12);
+    filter:
+        drop-shadow(
+            0 0 18px
+            rgba(0, 234, 255, 0.18)
+        );
 }
 
 .heading-value small {
@@ -243,18 +533,28 @@ body {
     color: var(--cyan);
 
     font-size: 30px;
+
     font-weight: 500;
+
+    text-shadow:
+        0 0 15px
+        rgba(0, 234, 255, 0.55);
 }
 
 .direction-name {
     margin-top: 9px;
 
-    font-size: 25px;
-    font-weight: 800;
+    font-size: 27px;
 
-    letter-spacing: 5px;
+    font-weight: 900;
+
+    letter-spacing: 6px;
 
     color: #ffffff;
+
+    text-shadow:
+        0 0 22px
+        rgba(255, 255, 255, 0.12);
 }
 
 .direction-subtitle {
@@ -263,7 +563,14 @@ body {
     color: var(--cyan);
 
     font-size: 15px;
+
+    font-weight: 700;
+
     letter-spacing: 2px;
+
+    text-shadow:
+        0 0 12px
+        rgba(0, 234, 255, 0.4);
 }
 
 
@@ -275,24 +582,31 @@ body {
     width: 100%;
 
     display: flex;
+
     justify-content: center;
 
-    padding: 10px 0 30px;
+    padding:
+        24px
+        0
+        34px;
 }
 
 .compass-wrapper {
-    width: min(82vw, 500px);
+    width:
+        min(82vw, 540px);
+
     aspect-ratio: 1 / 1;
 
     position: relative;
 
     display: grid;
+
     place-items: center;
 }
 
 
 /* =========================================================
-   COMPASS OUTER RING
+   OUTER COMPASS
    ========================================================= */
 
 .compass-ring {
@@ -305,69 +619,113 @@ body {
 
     background:
         radial-gradient(
-            circle,
-            rgba(15, 34, 58, 0.96) 0%,
-            rgba(5, 15, 29, 0.98) 57%,
-            rgba(2, 7, 15, 1) 70%
+            circle at 50% 45%,
+            rgba(19, 49, 78, 0.98) 0%,
+            rgba(8, 23, 44, 0.98) 48%,
+            rgba(3, 9, 20, 1) 73%,
+            #01030a 100%
         );
 
     border:
-        2px solid rgba(0, 217, 255, 0.25);
+        2px solid
+        rgba(0, 234, 255, 0.3);
 
     box-shadow:
-        0 0 0 8px rgba(0, 217, 255, 0.025),
-        0 0 0 18px rgba(0, 217, 255, 0.018),
-        0 30px 80px rgba(0, 0, 0, 0.7),
-        inset 0 0 50px rgba(0, 150, 255, 0.08);
+        0 0 0 3px rgba(255, 255, 255, 0.025),
+        0 0 0 10px rgba(0, 234, 255, 0.025),
+        0 0 0 20px rgba(138, 92, 255, 0.018),
+        0 30px 90px rgba(0, 0, 0, 0.72),
+        0 0 70px rgba(0, 234, 255, 0.08),
+        inset 0 0 70px rgba(0, 170, 255, 0.09);
 
     overflow: hidden;
+
+    isolation: isolate;
 }
 
 
 /* =========================================================
-   INNER GLOW
+   OUTER ROTATING LIGHT
    ========================================================= */
 
 .compass-ring::before {
     content: "";
 
     position: absolute;
-    inset: 6%;
+
+    inset: 1%;
 
     border-radius: 50%;
 
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
 
-    box-shadow:
-        inset 0 0 40px rgba(0, 217, 255, 0.08);
+    background:
+        conic-gradient(
+            from 0deg,
+            transparent 0deg,
+            rgba(0, 234, 255, 0.45) 35deg,
+            transparent 70deg,
+            transparent 125deg,
+            rgba(138, 92, 255, 0.45) 175deg,
+            transparent 220deg,
+            rgba(255, 60, 172, 0.28) 285deg,
+            transparent 330deg
+        );
+
+    -webkit-mask:
+        radial-gradient(
+            transparent 91%,
+            #000 92%
+        );
+
+    mask:
+        radial-gradient(
+            transparent 91%,
+            #000 92%
+        );
+
+    animation:
+        outerSpin 14s linear infinite;
 }
+
+@keyframes outerSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   INNER RINGS
+   ========================================================= */
 
 .compass-ring::after {
     content: "";
 
     position: absolute;
 
-    width: 45%;
-    height: 45%;
-
-    left: 27.5%;
-    top: 27.5%;
+    inset: 7%;
 
     border-radius: 50%;
 
-    background:
-        radial-gradient(
-            circle,
-            rgba(0, 217, 255, 0.06),
-            transparent 70%
-        );
+    border:
+        1px solid
+        rgba(0, 234, 255, 0.12);
+
+    box-shadow:
+        inset 0 0 35px
+        rgba(0, 234, 255, 0.07),
+        0 0 30px
+        rgba(0, 234, 255, 0.04);
 
     pointer-events: none;
 }
 
 
 /* =========================================================
-   ROTATING COMPASS FACE
+   COMPASS FACE
    ========================================================= */
 
 .compass-face {
@@ -385,11 +743,70 @@ body {
         transform 0.12s linear;
 
     will-change: transform;
+
+    background:
+        radial-gradient(
+            circle,
+            transparent 0%,
+            transparent 62%,
+            rgba(0, 234, 255, 0.025) 63%,
+            transparent 64%
+        );
 }
 
 
 /* =========================================================
-   DEGREE NUMBERS
+   TICKS
+   ========================================================= */
+
+.tick {
+    position: absolute;
+
+    width: 2px;
+    height: 10px;
+
+    left: calc(50% - 1px);
+    top: 0;
+
+    transform-origin:
+        1px 100%;
+
+    background:
+        rgba(159, 204, 232, 0.42);
+
+    box-shadow:
+        0 0 3px rgba(0, 234, 255, 0.15);
+}
+
+.tick:nth-child(3n) {
+    height: 15px;
+
+    background:
+        rgba(0, 234, 255, 0.75);
+
+    box-shadow:
+        0 0 6px
+        rgba(0, 234, 255, 0.4);
+}
+
+.tick:nth-child(9n) {
+    height: 20px;
+
+    width: 3px;
+
+    left: calc(50% - 1.5px);
+
+    background:
+        var(--cyan);
+
+    box-shadow:
+        0 0 8px
+        rgba(0, 234, 255, 0.65);
+}
+
+
+/* =========================================================
+   DEGREE MARKS
    ========================================================= */
 
 .degree-mark {
@@ -399,103 +816,102 @@ body {
     height: 25px;
 
     left: calc(50% - 21px);
-    top: 4%;
+    top: 2.8%;
 
     text-align: center;
 
-    color: rgba(177, 213, 239, 0.75);
+    color:
+        rgba(185, 222, 245, 0.7);
 
     font-size: 10px;
-    font-weight: 600;
+
+    font-weight: 800;
+
+    letter-spacing: 0.5px;
 
     transform-origin:
-        21px calc(46% of 100%);
+        21px 318px;
 
-    pointer-events: none;
+    text-shadow:
+        0 0 8px
+        rgba(0, 234, 255, 0.15);
 }
 
-
-/*
-   Individual degree positions
-*/
-
 .mark-0 {
-    transform: rotate(0deg) translateY(0);
+    transform:
+        rotate(0deg)
+        translateY(0);
 }
 
 .mark-30 {
-    transform: rotate(30deg) translateY(0);
+    transform:
+        rotate(30deg)
+        translateY(0);
 }
 
 .mark-60 {
-    transform: rotate(60deg) translateY(0);
+    transform:
+        rotate(60deg)
+        translateY(0);
 }
 
 .mark-90 {
-    transform: rotate(90deg) translateY(0);
+    transform:
+        rotate(90deg)
+        translateY(0);
 }
 
 .mark-120 {
-    transform: rotate(120deg) translateY(0);
+    transform:
+        rotate(120deg)
+        translateY(0);
 }
 
 .mark-150 {
-    transform: rotate(150deg) translateY(0);
+    transform:
+        rotate(150deg)
+        translateY(0);
 }
 
 .mark-180 {
-    transform: rotate(180deg) translateY(0);
+    transform:
+        rotate(180deg)
+        translateY(0);
 }
 
 .mark-210 {
-    transform: rotate(210deg) translateY(0);
+    transform:
+        rotate(210deg)
+        translateY(0);
 }
 
 .mark-240 {
-    transform: rotate(240deg) translateY(0);
+    transform:
+        rotate(240deg)
+        translateY(0);
 }
 
 .mark-270 {
-    transform: rotate(270deg) translateY(0);
+    transform:
+        rotate(270deg)
+        translateY(0);
 }
 
 .mark-300 {
-    transform: rotate(300deg) translateY(0);
+    transform:
+        rotate(300deg)
+        translateY(0);
 }
 
 .mark-330 {
-    transform: rotate(330deg) translateY(0);
+    transform:
+        rotate(330deg)
+        translateY(0);
 }
 
 
 /* =========================================================
-   TICK MARKS
-   ========================================================= */
-
-.tick {
-    position: absolute;
-
-    width: 1px;
-    height: 9px;
-
-    left: calc(50% - 0.5px);
-    top: 0;
-
-    transform-origin:
-        0.5px 100%;
-
-    background: rgba(169, 210, 237, 0.45);
-}
-
-.tick:nth-child(3n) {
-    height: 13px;
-
-    background: rgba(0, 217, 255, 0.65);
-}
-
-
-/* =========================================================
-   DIRECTION LABELS
+   CARDINAL DIRECTIONS
    ========================================================= */
 
 .direction-label {
@@ -503,58 +919,107 @@ body {
 
     z-index: 8;
 
-    font-weight: 800;
+    text-align: center;
+
+    font-weight: 900;
 
     letter-spacing: 1px;
 
-    text-align: center;
+    user-select: none;
 }
 
 .direction-label.north {
-    top: 7%;
+    top: 5.5%;
     left: 50%;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
-    font-size: 30px;
+    font-size: 34px;
 
-    color: #ff405f;
+    color:
+        var(--red);
 
     text-shadow:
-        0 0 18px rgba(255, 64, 95, 0.5);
+        0 0 8px rgba(255, 54, 91, 0.75),
+        0 0 25px rgba(255, 54, 91, 0.45);
+}
+
+.direction-label.north::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 40px;
+
+    transform:
+        translateX(-50%);
+
+    width: 0;
+    height: 0;
+
+    border-left:
+        7px solid transparent;
+
+    border-right:
+        7px solid transparent;
+
+    border-bottom:
+        13px solid var(--red);
+
+    filter:
+        drop-shadow(
+            0 0 6px
+            rgba(255, 54, 91, 0.7)
+        );
 }
 
 .direction-label.south {
-    bottom: 7%;
+    bottom: 6%;
+
     left: 50%;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
-    font-size: 26px;
+    font-size: 27px;
 
-    color: #d9e7f3;
+    color:
+        #d9e9f5;
+
+    text-shadow:
+        0 0 15px
+        rgba(0, 234, 255, 0.18);
 }
 
 .direction-label.east {
-    right: 8%;
+    right: 6%;
+
     top: 50%;
 
-    transform: translateY(-50%);
+    transform:
+        translateY(-50%);
 
-    font-size: 26px;
+    font-size: 28px;
 
-    color: #d9e7f3;
+    color:
+        #d9e9f5;
 }
 
 .direction-label.west {
-    left: 8%;
+    left: 6%;
+
     top: 50%;
 
-    transform: translateY(-50%);
+    transform:
+        translateY(-50%);
 
-    font-size: 26px;
+    font-size: 28px;
 
-    color: #d9e7f3;
+    color:
+        #d9e9f5;
 }
 
 
@@ -562,40 +1027,38 @@ body {
    INTERMEDIATE DIRECTIONS
    ========================================================= */
 
-.direction-label.northeast {
-    right: 17%;
-    top: 19%;
-
+.direction-label.northeast,
+.direction-label.southeast,
+.direction-label.southwest,
+.direction-label.northwest {
     font-size: 12px;
 
-    color: var(--cyan);
+    color:
+        var(--cyan);
+
+    text-shadow:
+        0 0 10px
+        rgba(0, 234, 255, 0.5);
+}
+
+.direction-label.northeast {
+    right: 15%;
+    top: 17%;
 }
 
 .direction-label.southeast {
-    right: 17%;
-    bottom: 19%;
-
-    font-size: 12px;
-
-    color: var(--cyan);
+    right: 15%;
+    bottom: 17%;
 }
 
 .direction-label.southwest {
-    left: 17%;
-    bottom: 19%;
-
-    font-size: 12px;
-
-    color: var(--cyan);
+    left: 15%;
+    bottom: 17%;
 }
 
 .direction-label.northwest {
-    left: 17%;
-    top: 19%;
-
-    font-size: 12px;
-
-    color: var(--cyan);
+    left: 15%;
+    top: 17%;
 }
 
 
@@ -612,7 +1075,7 @@ body {
     width: 0;
     height: 0;
 
-    z-index: 20;
+    z-index: 30;
 
     transform:
         translate(-50%, -50%);
@@ -621,61 +1084,69 @@ body {
 .pointer-arrow {
     position: absolute;
 
+    left: -15px;
+    top: -160px;
+
     width: 0;
     height: 0;
 
-    left: -13px;
-    top: -145px;
+    border-left:
+        15px solid transparent;
 
-    border-left: 13px solid transparent;
-    border-right: 13px solid transparent;
+    border-right:
+        15px solid transparent;
 
-    border-bottom: 42px solid var(--red);
+    border-bottom:
+        52px solid var(--red);
 
     filter:
         drop-shadow(
-            0 0 10px rgba(255, 64, 95, 0.75)
+            0 0 6px rgba(255, 54, 91, 0.8)
+        )
+        drop-shadow(
+            0 0 20px rgba(255, 54, 91, 0.35)
         );
 }
 
-.pointer-arrow::after {
+.pointer-arrow::before {
     content: "";
 
     position: absolute;
 
     left: -7px;
-    top: 38px;
+    top: 7px;
 
     width: 14px;
-    height: 55px;
+    height: 37px;
 
     background:
         linear-gradient(
-            to bottom,
-            rgba(255, 255, 255, 0.8),
-            rgba(255, 255, 255, 0)
+            180deg,
+            #ffffff,
+            #ff8398,
+            transparent
         );
 
     clip-path:
         polygon(
-            50% 100%,
-            0 0,
-            100% 0
+            50% 0,
+            100% 100%,
+            0 100%
         );
 
-    opacity: 0.35;
+    opacity: 0.7;
 }
 
 
 /* =========================================================
-   CENTER
+   CENTER HUB
    ========================================================= */
 
 .compass-center {
     position: absolute;
 
-    width: 68px;
-    height: 68px;
+    width: 76px;
+    height: 76px;
 
     left: 50%;
     top: 50%;
@@ -683,40 +1154,76 @@ body {
     transform:
         translate(-50%, -50%);
 
-    z-index: 30;
+    z-index: 40;
 
     border-radius: 50%;
 
     display: grid;
+
     place-items: center;
 
     background:
         radial-gradient(
-            circle at 35% 30%,
-            #38eaff,
-            #0876a8 42%,
-            #03131e 72%
+            circle at 35% 25%,
+            #72f4ff,
+            #1284ba 35%,
+            #06334e 65%,
+            #020a13 100%
         );
 
     border:
-        3px solid rgba(255, 255, 255, 0.2);
+        3px solid
+        rgba(255, 255, 255, 0.23);
 
     box-shadow:
-        0 0 25px rgba(0, 217, 255, 0.3),
-        inset 0 0 20px rgba(0, 0, 0, 0.5);
+        0 0 18px
+        rgba(0, 234, 255, 0.4),
+        0 0 45px
+        rgba(0, 234, 255, 0.2),
+        inset 0 0 20px
+        rgba(0, 0, 0, 0.65);
+
+    animation:
+        hubGlow 2.5s ease-in-out infinite;
+}
+
+@keyframes hubGlow {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 18px rgba(0, 234, 255, 0.4),
+            0 0 45px rgba(0, 234, 255, 0.18),
+            inset 0 0 20px rgba(0, 0, 0, 0.65);
+    }
+
+    50% {
+        box-shadow:
+            0 0 25px rgba(0, 234, 255, 0.65),
+            0 0 60px rgba(138, 92, 255, 0.25),
+            inset 0 0 20px rgba(0, 0, 0, 0.65);
+    }
 }
 
 .center-dot {
-    width: 15px;
-    height: 15px;
+    width: 17px;
+    height: 17px;
 
     border-radius: 50%;
 
-    background: #ffffff;
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #ffffff,
+            #cfffff 35%,
+            var(--cyan) 70%,
+            #08718e
+        );
 
     box-shadow:
-        0 0 14px #ffffff,
-        0 0 30px var(--cyan);
+        0 0 10px #ffffff,
+        0 0 25px var(--cyan),
+        0 0 45px rgba(0, 234, 255, 0.55);
 }
 
 
@@ -725,58 +1232,123 @@ body {
    ========================================================= */
 
 .info-grid {
+    width: 100%;
+
+    max-width: 900px;
+
+    margin:
+        0 auto
+        25px;
+
     display: grid;
 
     grid-template-columns:
         repeat(3, 1fr);
 
-    gap: 12px;
-
-    margin: 0 auto 22px;
-
-    max-width: 800px;
+    gap: 14px;
 }
 
 .info-card {
-    min-height: 80px;
+    min-height: 88px;
 
     display: flex;
+
     align-items: center;
 
-    gap: 12px;
+    gap: 13px;
 
-    padding: 14px;
+    padding: 15px;
 
-    border-radius: 16px;
+    border-radius: 18px;
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        rgba(0, 234, 255, 0.13);
 
     background:
         linear-gradient(
             145deg,
-            rgba(14, 29, 50, 0.82),
-            rgba(5, 12, 24, 0.75)
+            rgba(17, 36, 64, 0.75),
+            rgba(5, 12, 27, 0.72)
         );
 
+    backdrop-filter:
+        blur(14px);
+
     box-shadow:
-        inset 0 1px rgba(255, 255, 255, 0.035);
+        0 12px 35px
+        rgba(0, 0, 0, 0.28),
+        inset 0 1px
+        rgba(255, 255, 255, 0.04);
+
+    position: relative;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.info-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--cyan),
+            var(--purple),
+            transparent
+        );
+
+    opacity: 0.5;
+}
+
+.info-card:hover {
+    transform:
+        translateY(-3px);
+
+    border-color:
+        rgba(0, 234, 255, 0.35);
 }
 
 .info-icon {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
 
     flex-shrink: 0;
 
     display: grid;
+
     place-items: center;
 
-    border-radius: 12px;
+    border-radius: 13px;
+
+    font-size: 20px;
 
     background:
-        rgba(0, 217, 255, 0.08);
+        linear-gradient(
+            145deg,
+            rgba(0, 234, 255, 0.13),
+            rgba(138, 92, 255, 0.1)
+        );
 
-    font-size: 19px;
+    border:
+        1px solid
+        rgba(0, 234, 255, 0.18);
+
+    box-shadow:
+        inset 0 0 15px
+        rgba(0, 234, 255, 0.05);
 }
 
 .info-label {
@@ -785,15 +1357,19 @@ body {
     color: var(--muted);
 
     font-size: 9px;
-    font-weight: 700;
 
-    letter-spacing: 1.5px;
+    font-weight: 800;
 
-    margin-bottom: 4px;
+    letter-spacing: 1.6px;
+
+    margin-bottom: 5px;
 }
 
 .info-card strong {
-    font-size: 16px;
+    font-size: 17px;
+
+    font-weight: 900;
+
     color: #ffffff;
 }
 
@@ -804,106 +1380,149 @@ body {
 
 .controls {
     display: flex;
+
     justify-content: center;
+
+    align-items: center;
+
     flex-wrap: wrap;
 
     gap: 12px;
 
-    margin-bottom: 24px;
+    margin:
+        0 auto
+        25px;
 }
 
 .control-button {
-    min-height: 48px;
+    min-height: 50px;
 
-    padding: 0 20px;
+    padding:
+        0 21px;
 
-    border-radius: 13px;
+    border-radius: 14px;
 
-    border: 1px solid rgba(0, 217, 255, 0.2);
+    border:
+        1px solid
+        rgba(0, 234, 255, 0.2);
+
+    color: #ffffff;
 
     background:
         linear-gradient(
             145deg,
-            rgba(19, 38, 65, 0.95),
-            rgba(8, 18, 34, 0.95)
+            rgba(18, 39, 68, 0.95),
+            rgba(6, 14, 29, 0.95)
         );
 
-    color: #ffffff;
+    font-size: 11px;
 
-    font-size: 12px;
-    font-weight: 800;
+    font-weight: 900;
 
     letter-spacing: 0.7px;
 
     cursor: pointer;
 
+    box-shadow:
+        0 10px 25px
+        rgba(0, 0, 0, 0.3),
+        inset 0 1px
+        rgba(255, 255, 255, 0.04);
+
     transition:
         transform 0.2s ease,
         box-shadow 0.2s ease,
-        border-color 0.2s ease;
-
-    box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.2);
+        border-color 0.2s ease,
+        background 0.2s ease;
 }
 
 .control-button:hover {
-    transform: translateY(-2px);
+    transform:
+        translateY(-3px);
 
     border-color:
-        rgba(0, 217, 255, 0.55);
+        rgba(0, 234, 255, 0.55);
 
     box-shadow:
-        0 10px 30px rgba(0, 217, 255, 0.12);
+        0 14px 35px
+        rgba(0, 0, 0, 0.4),
+        0 0 20px
+        rgba(0, 234, 255, 0.08);
 }
 
 .control-button:active {
-    transform: translateY(1px);
+    transform:
+        translateY(1px)
+        scale(0.98);
 }
 
 .control-button.primary {
     background:
         linear-gradient(
             135deg,
-            #008fd4,
-            #1457d9
+            #009ddd,
+            #3459e8,
+            #754ed9
         );
 
     border-color:
-        rgba(115, 230, 255, 0.65);
+        rgba(148, 239, 255, 0.65);
 
     box-shadow:
-        0 10px 30px rgba(0, 130, 255, 0.22);
+        0 12px 30px
+        rgba(0, 140, 255, 0.25),
+        0 0 25px
+        rgba(89, 91, 255, 0.12);
+}
+
+.control-button.primary:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #00b5eb,
+            #4c66ff,
+            #945fff
+        );
 }
 
 
 /* =========================================================
-   CALIBRATION / PERMISSION PANELS
+   CALIBRATION PANEL
    ========================================================= */
 
 .calibration-panel,
 .permission-panel {
-    max-width: 600px;
+    width: min(100%, 650px);
 
-    margin: 0 auto 25px;
+    margin:
+        0 auto
+        25px;
 
-    padding: 28px;
+    padding: 30px;
 
     text-align: center;
 
-    border-radius: 20px;
+    border-radius: 22px;
 
     border:
-        1px solid rgba(0, 217, 255, 0.25);
+        1px solid
+        rgba(0, 234, 255, 0.25);
 
     background:
         linear-gradient(
             145deg,
-            rgba(12, 29, 50, 0.97),
-            rgba(4, 12, 25, 0.97)
+            rgba(12, 31, 56, 0.94),
+            rgba(4, 11, 25, 0.95)
         );
 
+    backdrop-filter:
+        blur(20px);
+
     box-shadow:
-        0 25px 70px rgba(0, 0, 0, 0.4);
+        0 25px 70px
+        rgba(0, 0, 0, 0.5),
+        inset 0 1px
+        rgba(255, 255, 255, 0.05);
 }
 
 .hidden {
@@ -912,16 +1531,22 @@ body {
 
 .calibration-icon,
 .permission-icon {
-    font-size: 42px;
+    font-size: 45px;
 
-    margin-bottom: 12px;
+    margin-bottom: 13px;
+
+    filter:
+        drop-shadow(
+            0 0 15px
+            rgba(0, 234, 255, 0.35)
+        );
 }
 
 .calibration-panel h2,
 .permission-panel h2 {
-    margin-bottom: 10px;
+    font-size: 22px;
 
-    font-size: 21px;
+    margin-bottom: 10px;
 }
 
 .calibration-panel p,
@@ -930,7 +1555,7 @@ body {
 
     font-size: 14px;
 
-    line-height: 1.6;
+    line-height: 1.65;
 }
 
 .calibration-en {
@@ -939,15 +1564,23 @@ body {
 
 .calibration-progress {
     width: 100%;
-    height: 7px;
 
-    margin: 22px 0;
+    height: 8px;
+
+    margin:
+        23px
+        0;
 
     overflow: hidden;
 
     border-radius: 20px;
 
-    background: rgba(255, 255, 255, 0.07);
+    background:
+        rgba(255, 255, 255, 0.07);
+
+    box-shadow:
+        inset 0 1px 4px
+        rgba(0, 0, 0, 0.5);
 }
 
 .calibration-progress div {
@@ -960,11 +1593,14 @@ body {
         linear-gradient(
             90deg,
             var(--cyan),
-            var(--blue)
+            var(--blue),
+            var(--purple)
         );
 
     box-shadow:
-        0 0 15px var(--cyan);
+        0 0 15px var(--cyan),
+        0 0 30px
+        rgba(138, 92, 255, 0.45);
 
     transition:
         width 0.2s linear;
@@ -979,54 +1615,55 @@ body {
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
-    gap: 20px;
+    flex-wrap: wrap;
 
-    padding: 18px 0 5px;
+    gap: 18px;
 
-    color: #5e7898;
+    padding:
+        17px
+        0
+        5px;
+
+    color:
+        #58718e;
 
     font-size: 9px;
 
-    letter-spacing: 1px;
+    font-weight: 700;
+
+    letter-spacing: 1.2px;
 
     text-transform: uppercase;
 }
 
 .app-footer strong {
-    color: var(--green);
+    color:
+        var(--green);
+
+    text-shadow:
+        0 0 8px
+        rgba(32, 240, 160, 0.35);
 }
 
 
 /* =========================================================
-   SENSOR ACTIVE STATE
+   DISABLED BUTTON
    ========================================================= */
 
-.sensor-active .status-dot {
-    background: var(--green);
+.control-button:disabled {
+    opacity: 0.45;
+
+    cursor:
+        not-allowed;
+
+    transform:
+        none !important;
 
     box-shadow:
-        0 0 12px var(--green);
-
-    animation:
-        sensorPulse 1.5s infinite;
-}
-
-.sensor-active #sensorStatusText {
-    color: var(--green);
-}
-
-@keyframes sensorPulse {
-
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0.4;
-    }
+        none;
 }
 
 
@@ -1037,13 +1674,23 @@ body {
 @media (max-width: 700px) {
 
     .compass-app {
-        padding: 12px;
+        padding:
+            12px
+            12px
+            25px;
     }
 
     .top-header {
-        padding: 14px;
+        min-height: 68px;
 
-        border-radius: 17px;
+        padding:
+            12px;
+
+        border-radius: 18px;
+    }
+
+    .brand {
+        gap: 10px;
     }
 
     .brand-icon {
@@ -1051,78 +1698,123 @@ body {
         height: 44px;
 
         font-size: 23px;
+
+        border-radius: 13px;
     }
 
     .brand h1 {
         font-size: 14px;
 
-        letter-spacing: 1.5px;
+        letter-spacing: 1.7px;
     }
 
     .brand p {
-        font-size: 8px;
+        font-size: 7px;
+
+        letter-spacing: 1.7px;
     }
 
     .sensor-status {
-        padding: 7px 9px;
+        padding:
+            8px
+            10px;
 
-        font-size: 9px;
+        font-size: 8px;
     }
 
     .heading-panel {
-        padding-top: 22px;
+        padding:
+            21px
+            5px
+            14px;
+    }
+
+    .heading-value span {
+        font-size:
+            clamp(58px, 17vw, 82px);
+    }
+
+    .heading-value small {
+        font-size: 23px;
     }
 
     .direction-name {
         font-size: 21px;
+
         letter-spacing: 4px;
     }
 
+    .direction-subtitle {
+        font-size: 13px;
+    }
+
+    .compass-section {
+        padding:
+            17px
+            0
+            25px;
+    }
+
     .compass-wrapper {
-        width: min(92vw, 440px);
+        width:
+            min(94vw, 470px);
+    }
+
+    .compass-center {
+        width: 62px;
+        height: 62px;
+    }
+
+    .pointer-arrow {
+        top: -135px;
     }
 
     .info-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
+
+        gap: 10px;
     }
 
     .info-card {
-        min-height: 68px;
+        min-height: 70px;
     }
 
     .controls {
         display: grid;
 
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
 
-        padding: 0 10px;
+        padding:
+            0
+            8px;
     }
 
     .control-button {
         width: 100%;
     }
 
-    .app-footer {
-        flex-direction: column;
-
-        gap: 7px;
-
-        text-align: center;
+    .calibration-panel,
+    .permission-panel {
+        padding: 24px 18px;
     }
 }
 
 
 /* =========================================================
-   VERY SMALL PHONES
+   SMALL PHONES
    ========================================================= */
 
-@media (max-width: 380px) {
+@media (max-width: 390px) {
 
     .brand p {
         display: none;
     }
 
     .sensor-status {
+        padding: 7px;
+
         font-size: 0;
     }
 
@@ -1135,8 +1827,14 @@ body {
         font-size: 60px;
     }
 
+    .direction-name {
+        font-size: 19px;
+
+        letter-spacing: 3px;
+    }
+
     .direction-label.north {
-        font-size: 25px;
+        font-size: 27px;
     }
 
     .direction-label.south,
@@ -1145,15 +1843,35 @@ body {
         font-size: 22px;
     }
 
+    .direction-label.northeast,
+    .direction-label.southeast,
+    .direction-label.southwest,
+    .direction-label.northwest {
+        font-size: 10px;
+    }
+
     .compass-center {
-        width: 56px;
-        height: 56px;
+        width: 55px;
+        height: 55px;
+    }
+
+    .center-dot {
+        width: 14px;
+        height: 14px;
+    }
+
+    .pointer-arrow {
+        top: -118px;
+
+        border-left-width: 12px;
+        border-right-width: 12px;
+        border-bottom-width: 43px;
     }
 }
 
 
 /* =========================================================
-   LANDSCAPE MOBILE
+   LANDSCAPE PHONE
    ========================================================= */
 
 @media (
@@ -1163,26 +1881,83 @@ body {
 ) {
 
     .compass-app {
-        padding: 10px 20px;
+        padding:
+            10px
+            20px
+            20px;
     }
 
     .heading-panel {
-        padding: 10px;
-    }
+        padding:
+            8px
+            5px;
+        }
 
     .heading-value span {
         font-size: 48px;
     }
 
-    .compass-wrapper {
-        width: min(65vh, 420px);
+    .heading-value small {
+        font-size: 20px;
+    }
+
+    .direction-name {
+        font-size: 17px;
+
+        margin-top: 4px;
     }
 
     .compass-section {
-        padding-bottom: 12px;
+        padding:
+            10px
+            0
+            15px;
+    }
+
+    .compass-wrapper {
+        width:
+            min(68vh, 430px);
     }
 
     .info-grid {
+        grid-template-columns:
+            repeat(3, 1fr);
+
         margin-bottom: 12px;
+    }
+
+    .info-card {
+        min-height: 60px;
+
+        padding: 9px;
+    }
+
+    .info-icon {
+        width: 34px;
+        height: 34px;
+    }
+
+    .controls {
+        margin-bottom: 10px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        scroll-behavior: auto !important;
+
+        transition-duration: 0.01ms !important;
     }
 }
